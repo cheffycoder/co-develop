@@ -54,8 +54,7 @@ export const LeftSideDesc = styled.div`
 `
 
 export const EditorWrap = styled.div`
-  height: 100vh;
-  background: white;
+  overflow-y: hidden;
 `;
 
 
