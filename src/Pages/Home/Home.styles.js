@@ -82,7 +82,7 @@ export const CreateInfo = styled.span`
     margin-top: 20px;
 
     .createNewRoomBtn {
-        color: color: #4aee88;
+        color: #4aee88;
         text-decoration: none;
         border-bottom: 1px solid #4aee88;
         transition: all 0.2s ease-in-out;

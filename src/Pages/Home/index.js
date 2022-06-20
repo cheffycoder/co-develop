@@ -9,8 +9,10 @@ import {
   InputBox,
   JoinButton,
   CreateInfo,
-} from "./../Home.styles.js";
+} from "./Home.styles.js";
 import { v4 as uuidV4 } from "uuid";
+
+import toast from "react-hot-toast";
 
 const Home = () => {
   const [roomId, setRoomId] = useState("");
@@ -22,6 +24,9 @@ const Home = () => {
     const id = uuidV4();
 
     setRoomId(id);
+
+    // Showing Toast
+    toast.success("Created a new room");
   };
 
   return (
