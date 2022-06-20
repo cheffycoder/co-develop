@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 
 export const HomePageLogo = styled.img`
-    height: 80px;
-    margin-bottom: 30px;
+    height: 120px;
+    margin-bottom: 20px;
 `
 
 export const HomePageWrapper = styled.div`

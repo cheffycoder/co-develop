@@ -10,3 +10,4 @@
  First is the Home Page and Second is the Editor Page.
 
  As soon as user makes a new room or enter an existing room details he will be routed to Editor page. // React Router used.
+ For Code Editor we are using the open source Code Editor Code Mirror and will do some modifications.
