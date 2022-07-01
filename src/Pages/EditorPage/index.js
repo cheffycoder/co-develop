@@ -36,17 +36,17 @@ const EditorPage = () => {
       // After the below initSocket function our client will be connected to the socket server.
       socketRef.current = await initSocket();
       // As socket is prone to erros thus let's do error handling
-      socketRef.current.on("connect_error", (err) => handleErrors(err));
-      socketRef.current.on("connect_failed", (err) => handleErrors(err));
+      socketRef.current?.on("connect_error", (err) => handleErrors(err));
+      socketRef.current?.on("connect_failed", (err) => handleErrors(err));
 
       // Sending event to server to show that I have joined.
-      socketRef.current.emit(ACTIONS.JOIN, {
+      socketRef.current?.emit(ACTIONS.JOIN, {
         roomId,
         userName: location.state?.userName,
       });
 
       // Listening for joined event
-      socketRef.current.on(ACTIONS.JOINED, ({clients, socketId , userName}) => {
+      socketRef.current?.on(ACTIONS.JOINED, ({clients, socketId , userName}) => {
         // If joined user is not you
         if(userName != location.state?.userName){
           toast.success(`${userName} joined the room`);
@@ -56,7 +56,7 @@ const EditorPage = () => {
 
 
       // Listening for disconnected event
-      socketRef.current.on(ACTIONS.DISCONNECTED, ({socketId, userName}) => {
+      socketRef.current?.on(ACTIONS.DISCONNECTED, ({socketId, userName}) => {
         toast.success(`${userName} left the room`);
 
         // Remove this user from the clientsList.
@@ -70,18 +70,18 @@ const EditorPage = () => {
     init();
 
 
-    
+
     // As we are using many sideEffect like listeners, Thus calling cleaning functions as soon as component is unmounted.
     return () => {
-      socketRef.current.disconnect();
+      socketRef.current?.disconnect();
 
       // Unsubscribing socket-io listening events
-      socketRef.current.off(ACTIONS.JOINED);
-      socketRef.current.off(ACTIONS.DISCONNECTED);
-    }
+      socketRef.current?.off(ACTIONS.JOINED);
+      socketRef.current?.off(ACTIONS.DISCONNECTED);
+    };
   }, []);
 
-  if (!location.state) {
+  if (!location?.state) {
     return <Navigate to="/" />;
   }
   return (
@@ -91,8 +91,8 @@ const EditorPage = () => {
           <EditorPageLogo src="/co-develop.png" alt="co-develop-logo" />
           <MainLabel>Connected</MainLabel>
           <ClientsListWrapper className="clientsList">
-            {clients.map((client) => (
-              <Client userName={client.userName} />
+            {clients.map((client, index) => (
+              <Client userName={client.userName} key={index}/>
             ))}
           </ClientsListWrapper>
         </LeftSideDesc>
