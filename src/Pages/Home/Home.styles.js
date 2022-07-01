@@ -77,7 +77,7 @@ export const JoinButton = styled.button`
     }
 `
 
-export const CreateInfo = styled.span`
+export const CreateRoomInfo = styled.span`
     margin: 0 auto; /* Centered the Create Info Text */
     margin-top: 20px;
 

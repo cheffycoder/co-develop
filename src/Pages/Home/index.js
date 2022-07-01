@@ -8,7 +8,7 @@ import {
   HomePageLogo,
   InputBox,
   JoinButton,
-  CreateInfo,
+  CreateRoomInfo,
 } from "./Home.styles.js";
 import { v4 as uuidV4 } from "uuid";
 import toast from "react-hot-toast";
@@ -79,12 +79,12 @@ const Home = () => {
             onKeyUp={handleInputEnter}
           />
           <JoinButton className="btn joinBtn" onClick={joinRoom}>Join</JoinButton>
-          <CreateInfo className="createInfo">
+          <CreateRoomInfo className="createInfo">
             If you don't have an invite then create &nbsp;
             <a className="createNewRoomBtn" href="#" onClick={createNewRoom}>
               new room
             </a>
-          </CreateInfo>
+          </CreateRoomInfo>
         </InputGroup>
       </FormWrapper>
       <FooterText>
