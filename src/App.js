@@ -8,8 +8,12 @@ function App() {
     <>
       {/* Adding a container for toaster to be displayed */}
       <Toaster
-        position="top-right"
+        position="top-center"
         toastOptions={{
+          style: {
+            position: "relative",
+            right: "60px",
+          },
           success: {
             theme: {
               primary: "#4aed88",

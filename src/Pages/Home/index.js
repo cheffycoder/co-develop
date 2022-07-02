@@ -2,20 +2,23 @@ import React, { useState } from "react";
 import {
   HomePageWrapper,
   FormWrapper,
+  FormMainLabel,
+  FormSubLabel,
   InputGroup,
   MainLabel,
+  SubLabel,
+  HeaderWrapper,
+  Illustration,
   FooterText,
   HomePageLogo,
   InputBox,
   JoinButton,
-  CreateRoomInfo,
 } from "./Home.styles.js";
 import { v4 as uuidV4 } from "uuid";
 import toast from "react-hot-toast";
 
 // Previously to route we used to use the useHistory hook, with new version we began using useNavigate.
 import { useNavigate } from "react-router";
-
 
 const Home = () => {
   const [roomId, setRoomId] = useState("");
@@ -34,33 +37,50 @@ const Home = () => {
     toast.success("Created a new room");
   };
 
-
   const joinRoom = () => {
-    if(!roomId || !userName){
+    if (!roomId || !userName) {
       toast.error("Room ID & Username is required");
       return;
-    }else{
+    } else {
       //Redirect
       navigate(`/editor/${roomId}`, {
         // As we need to pass data from 1 route to another, in here we want to pass the userName entered, we will do so with state.
         // If we don't use then, then we either has to use redux store, or have a global state, or pass in URL, or store in LS(Local Storage).
         state: {
           userName,
-        }
+        },
       });
     }
-  }
+  };
 
   const handleInputEnter = (event) => {
-    if(event.code === "Enter") joinRoom();
+    if (event.code === "Enter") joinRoom();
     return;
-  }
+  };
 
   return (
     <HomePageWrapper className="homePageWrapper">
-      <FormWrapper className="formWrapper">
+      <HeaderWrapper>
         <HomePageLogo src="/co-develop.png" alt="co-develop-logo" />
-        <MainLabel className="mainLabel">Paste invitation Room ID</MainLabel>
+        <Illustration src="/co-develop-illustration.svg"></Illustration>
+        <MainLabel className="mainLabel">Welcome aboard my friend</MainLabel>
+        <SubLabel className="subLabel">
+          Start collaborating just in a couple of clicks.
+        </SubLabel>
+        <FooterText>
+          Built with love by, &nbsp;
+          <a className="footerLink" href="#">
+            Shivam bandral
+          </a>
+        </FooterText>
+      </HeaderWrapper>
+      <FormWrapper className="formWrapper">
+        <FormMainLabel className="mainLabel">
+          Collaborate For Free
+        </FormMainLabel>
+        <FormSubLabel className="subLabel">
+          Paste invitation Room ID
+        </FormSubLabel>
         <InputGroup className="inputGroup">
           <InputBox
             value={roomId}
@@ -78,23 +98,17 @@ const Home = () => {
             onChange={(e) => setUserName(e.target.value)}
             onKeyUp={handleInputEnter}
           />
-          <JoinButton className="btn joinBtn" onClick={joinRoom}>Join</JoinButton>
-          <CreateRoomInfo className="createInfo">
-            If you don't have an invite then create &nbsp;
-            <a className="createNewRoomBtn" href="#" onClick={createNewRoom}>
-              new room
-            </a>
-          </CreateRoomInfo>
+          <JoinButton className="btn joinBtn" onClick={joinRoom}>
+            Join
+          </JoinButton>
         </InputGroup>
-      </FormWrapper>
-      <FooterText>
-        <h4>
-          Built with love by, &nbsp;
-          <a className="footerLink" href="#">
-            Shivam bandral
+        <FormSubLabel className="createInfo">
+          If you don't have an invite then create &nbsp;
+          <a className="createNewRoomBtn" href="#" onClick={createNewRoom}>
+            new room
           </a>
-        </h4>
-      </FooterText>
+        </FormSubLabel>
+      </FormWrapper>
     </HomePageWrapper>
   );
 };

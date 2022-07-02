@@ -46,7 +46,6 @@ const Editor = ({ socketRef, roomId, onCodeChange }) => {
 
 
   useEffect(() => {
-    // const socketRefValue = socketRef.current;
     const editorRefValue = editorRef.current;
     if (socketRefValue && editorRefValue) {
       socketRefValue.on(ACTIONS.CODE_CHANGE, ({ code }) => {

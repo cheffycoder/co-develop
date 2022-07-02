@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 export const MainWrap = styled.div`
   display: grid;
-  grid-template-columns: 230px 1fr;
+  grid-template-columns: 1fr 250px;
   height: 100vh;
 `;
 
 export const EditorPageLogo = styled.img`
   padding-bottom: 10px;
-  height: 110px;
+  height: 72px;
   border-bottom: 1px solid #424242;
 `;
 
@@ -25,22 +25,18 @@ export const ClientsListWrapper = styled.div`
 `;
 
 export const EditorPageButton = styled.button`
-  background: ${(props) => (props.primary ? "#4aed88" : "white")};
+  background-color: ${(props) => (props.primary ? "#3949AB" : "white")};
   font-size: 15px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   border: none;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 40px;
   margin: 5px;
   font-weight: bold;
-
-   :hover {
-    background: ${(props) => props.primary ? "#2b824c" : ""}
-   }
 `;
 
-export const LeftSide = styled.div`
+export const RightSide = styled.div`
   background-color: #1c1e29;
   color: white;
   padding: 16px;
@@ -49,7 +45,7 @@ export const LeftSide = styled.div`
   flex-direction: column;
 `;
 
-export const LeftSideDesc = styled.div`
+export const RightSideDesc = styled.div`
   flex: 1;
 `
 

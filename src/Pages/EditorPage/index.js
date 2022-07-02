@@ -1,13 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import {
   MainWrap,
-  LeftSide,
+  RightSide,
   EditorWrap,
   EditorPageLogo,
   ClientsListWrapper,
   MainLabel,
   EditorPageButton,
-  LeftSideDesc,
+  RightSideDesc,
 } from "./EditorPage.styles.js";
 import Client from "./../../Components/Client";
 import Editor from "./../../Components/Editor";
@@ -118,8 +118,8 @@ const EditorPage = () => {
       <EditorWrap>
         <Editor socketRef={socketRef} roomId={roomId} onCodeChange={(changedCode) => {codeRef.current = changedCode}} />
       </EditorWrap>
-      <LeftSide>
-        <LeftSideDesc>
+      <RightSide>
+        <RightSideDesc>
           <EditorPageLogo src="/co-develop.png" alt="co-develop-logo" />
           <MainLabel>Connected</MainLabel>
           <ClientsListWrapper className="clientsList">
@@ -127,14 +127,14 @@ const EditorPage = () => {
               <Client userName={client.userName} key={index}/>
             ))}
           </ClientsListWrapper>
-        </LeftSideDesc>
+        </RightSideDesc>
         <EditorPageButton className="btn copyBtn" onClick={handleCopyRoomId}>
           Copy Room Id
         </EditorPageButton>
         <EditorPageButton primary className="btn leaveBtn" onClick={leaveRoom}>
           Leave
         </EditorPageButton>
-      </LeftSide>
+      </RightSide>
     </MainWrap>
   );
 };
