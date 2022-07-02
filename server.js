@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express(); // Making express server
+const path = require('path')
 
 const { createServer } = require("http"); // This http dependency module is given by node itself, (inbuilt)
 const ExpServer = createServer(app); // Express obj is passed to http object createServer function
