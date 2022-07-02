@@ -81,6 +81,21 @@ const EditorPage = () => {
     };
   }, []);
 
+
+
+  const handleCopyRoomId = async () => {
+    // Adding try to catch because we will be using Web API, so to handle any errors
+    try{
+      await navigator.clipboard.writeText(roomId);
+      toast.success('RoomID has been copied to your clipboard')
+    }catch (err){
+      toast.error("Could not copy RoomID");
+      console.log(err);
+    }
+  }
+
+
+
   if (!location?.state) {
     return <Navigate to="/" />;
   }
@@ -96,7 +111,7 @@ const EditorPage = () => {
             ))}
           </ClientsListWrapper>
         </LeftSideDesc>
-        <EditorPageButton className="btn copyBtn">
+        <EditorPageButton className="btn copyBtn" onClick={handleCopyRoomId}>
           Copy Room Id
         </EditorPageButton>
         <EditorPageButton primary className="btn leaveBtn">
