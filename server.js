@@ -46,6 +46,11 @@ io.on("connection", (socket) => {
     
   });
 
+
+  socket.on(ACTIONS.CODE_CHANGE, ({roomId, code}) => {
+    socket.in(roomId).emit(ACTIONS.CODE_CHANGE, { code });
+  })
+
   // This disconnecting lifecycle is hook is provided to do something before completely disconneting the socket.
   socket.on('disconnecting', () => {
     // Converting map to array another method, btw rooms for a particular socket would be 1. Just in case handling. 

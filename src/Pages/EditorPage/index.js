@@ -119,7 +119,7 @@ const EditorPage = () => {
         </EditorPageButton>
       </LeftSide>
       <EditorWrap>
-        <Editor />
+        <Editor socketRef={socketRef} roomId={roomId} />
       </EditorWrap>
     </MainWrap>
   );
