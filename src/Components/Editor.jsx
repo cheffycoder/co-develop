@@ -10,9 +10,10 @@ import './Editor.css'
 import ACTIONS from '../action';
 
 
-const Editor = ({ socketRef, roomId }) => {
+const Editor = ({ socketRef, roomId, onCodeChange }) => {
 
   const editorRef = useRef(null);
+  const socketRefValue = socketRef.current;
 
   useEffect(() => {
     async function init() {
@@ -24,35 +25,47 @@ const Editor = ({ socketRef, roomId }) => {
         lineNumbers: true,
       })
 
-      socketRef.current?.on(ACTIONS.CODE_CHANGE, ({ code }) => {
-        console.log('code', code);
-        if(code !== null){
-          editorRef.current?.setValue(code);
-        }
-      })
-
-
       editorRef.current?.on('change', (instance, changes) => {
         const {origin} = changes;
 
         // Getting all the code in code editor
         const code = instance.getValue();
 
+        // As soon as someone types in editor, fresh code will be sent to parent component
+        onCodeChange(code);
+
         // 
         if(origin !== 'setValue'){
-          socketRef.current.emit(ACTIONS.CODE_CHANGE, { roomId, code})
+          socketRefValue?.emit(ACTIONS.CODE_CHANGE, { roomId, code});
         }
       })
-
     }
 
     init();
   }, [])
+
+
+  useEffect(() => {
+    // const socketRefValue = socketRef.current;
+    const editorRefValue = editorRef.current;
+    if (socketRefValue && editorRefValue) {
+      socketRefValue.on(ACTIONS.CODE_CHANGE, ({ code }) => {
+            if (code !== null) {
+              console.log('socketRef', socketRefValue);
+              editorRefValue.setValue(code);
+            }
+        });
+    }
+
+    return () => {
+      socketRefValue?.off(ACTIONS.CODE_CHANGE);
+    };
+  }, [socketRefValue]);
   
 
   return (
     // Idea is to attach this textarea with CodeMirror so that this will be converted into a Editor
-    <textarea id="realTimeEditor"></textarea>
+    <textarea id="realTimeEditor" />
   )
 }
 

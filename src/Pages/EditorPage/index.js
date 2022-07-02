@@ -22,6 +22,9 @@ const EditorPage = () => {
   const { roomId } = useParams(); // roomId was given as a variable while defining dynamic path
   const socketRef = useRef(null);
 
+  // Making a code reference so that value should be inserted form editor.jsx to this parent component editorPage.
+  const codeRef = useRef(null);
+
 
   const [clients, setClients] = useState([]);
 
@@ -48,10 +51,16 @@ const EditorPage = () => {
       // Listening for joined event
       socketRef.current?.on(ACTIONS.JOINED, ({clients, socketId , userName}) => {
         // If joined user is not you
-        if(userName != location.state?.userName){
+        if(userName !== location.state?.userName){
           toast.success(`${userName} joined the room`);
         }
         setClients(clients);
+
+        // If a new user has joined then we have to get the existing code and put it there for the newly joined user
+        socketRef.current?.emit(ACTIONS.SYNC_CODE, {
+          code: codeRef?.current,
+          socketId
+        });
       })
 
 
@@ -101,6 +110,9 @@ const EditorPage = () => {
   }
   return (
     <MainWrap className="mainWrap">
+      <EditorWrap>
+        <Editor socketRef={socketRef} roomId={roomId} onCodeChange={(changedCode) => {codeRef.current = changedCode}} />
+      </EditorWrap>
       <LeftSide>
         <LeftSideDesc>
           <EditorPageLogo src="/co-develop.png" alt="co-develop-logo" />
@@ -118,9 +130,6 @@ const EditorPage = () => {
           Leave
         </EditorPageButton>
       </LeftSide>
-      <EditorWrap>
-        <Editor socketRef={socketRef} roomId={roomId} />
-      </EditorWrap>
     </MainWrap>
   );
 };
