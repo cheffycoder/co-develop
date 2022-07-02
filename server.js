@@ -8,6 +8,21 @@ const { Server } = require("socket.io"); // This server class is by default give
 const ACTIONS = require("./src/action");
 const io = new Server(ExpServer); // Passing Http-ExpressServer to Socket Class to make it a socket server
 
+// Telling server that build is our static folder, so that if any request comes server knows where to find the index.html file.
+app.use(express.static('build'));
+/*
+  This is used to state that whatever path the user hits on, always serve the index.html file.
+  This is to cooperate with the reload error.
+
+  If a user reload a page having a path which is defined in our reactApp then server won't know such path and will through error.
+  Thus, to cooperate with this, if any user refreshes on the editor page too, then too we will serve the index.html page,
+  and the rest of the react routing is done internally, by react app.
+*/
+app.use((req, res, next) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'))
+});
+
+
 // Return array of objects [{socketId1, userName1}, {socketId2, userName2} ...] of connected clients in a given room
 const getAllConnectedClients = (roomId) => {
   // io.sockets.adapter.rooms.get(roomId) return type is map and we are converting it to an array.
