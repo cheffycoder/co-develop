@@ -103,6 +103,11 @@ const EditorPage = () => {
     }
   }
 
+  const leaveRoom = () => {
+    // Navigate to home page and the user will itself get disconnected.
+    reactNavigator('/');
+  }
+
 
 
   if (!location?.state) {
@@ -126,7 +131,7 @@ const EditorPage = () => {
         <EditorPageButton className="btn copyBtn" onClick={handleCopyRoomId}>
           Copy Room Id
         </EditorPageButton>
-        <EditorPageButton primary className="btn leaveBtn">
+        <EditorPageButton primary className="btn leaveBtn" onClick={leaveRoom}>
           Leave
         </EditorPageButton>
       </LeftSide>
