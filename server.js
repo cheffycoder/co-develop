@@ -93,7 +93,7 @@ io.on("connection", (socket) => {
 });
 
 // Now express-http server is there, now we have to listen it at some port
-const PORT = process.env.port || 5000;
+const PORT = process.env.PORT || 5000;
 
 ExpServer.listen(PORT, () => {
   console.log("Listening on ", PORT);
