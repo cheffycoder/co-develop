@@ -13,6 +13,7 @@ import {
   HomePageLogo,
   InputBox,
   JoinButton,
+  CreateRoomInfo
 } from "./Home.styles.js";
 import { v4 as uuidV4 } from "uuid";
 import toast from "react-hot-toast";
@@ -103,10 +104,10 @@ const Home = () => {
           </JoinButton>
         </InputGroup>
         <FormSubLabel className="createInfo">
-          If you don't have an invite then create &nbsp;
-          <a className="createNewRoomBtn" href="#" onClick={createNewRoom}>
+          If you don't have an invite then create&nbsp;
+          <CreateRoomInfo className="createNewRoomBtn" href="#" onClick={createNewRoom}>
             new room
-          </a>
+          </CreateRoomInfo>
         </FormSubLabel>
       </FormWrapper>
     </HomePageWrapper>

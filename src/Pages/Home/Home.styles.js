@@ -48,7 +48,7 @@ export const SubLabel = styled.span`
 
 export const FooterText = styled.footer`
   font-size: 12px;
-  margin: 10px auto;
+  margin: 20px auto;
   color: white;
 
   .footerLink {
@@ -96,7 +96,7 @@ export const InputBox = styled.input`
   border: 0.5px solid #d0d0d0;
   margin-bottom: 20px;
   background: transparent;
-  font-size: 12px;
+  font-size: 14px;
   color: #343434;
   height: 40px;
 
@@ -125,19 +125,17 @@ export const JoinButton = styled.button`
   }
 `;
 
-// export const CreateRoomInfo = styled.span`
-//   margin: 0 auto; /* Centered the Create Info Text */
-//   margin-top: 20px;
+export const CreateRoomInfo = styled.span`
+  // margin: 0 auto; /* Centered the Create Info Text */
+  // margin-top: 20px;
 
-//   .createNewRoomBtn {
-//     color: #043cc0;
-//     text-decoration: none;
-//     border-bottom: 1px solid #043cc0;
-//     transition: all 0.2s ease-in-out;
+  color: #043cc0;
+  text-decoration: none;
+  border-bottom: 1px solid #043cc0;
+  transition: all 0.2s ease-in-out;
 
-//     :hover {
-//       color: #368654;
-//       border-color: #368654;
-//     }
-//   }
-// `;
+  :hover {
+    color: #1c1e29;
+    border-color: #1c1e29;
+  }
+`;
