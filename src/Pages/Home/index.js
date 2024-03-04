@@ -13,7 +13,7 @@ import {
   HomePageLogo,
   InputBox,
   JoinButton,
-  CreateRoomInfo
+  CreateRoomInfo,
 } from "./Home.styles.js";
 import { v4 as uuidV4 } from "uuid";
 import toast from "react-hot-toast";
@@ -70,7 +70,7 @@ const Home = () => {
         </SubLabel>
         <FooterText>
           Built with love by, &nbsp;
-          <a className="footerLink" href="#">
+          <a className="footerLink" target="_blank" rel="noopener noreferrer" href="https://cheffycoder.github.io/portfolio/">
             Shivam bandral
           </a>
         </FooterText>
@@ -86,7 +86,7 @@ const Home = () => {
           <InputBox
             value={roomId}
             type="text"
-            placeholder="ROOM ID"
+            placeholder="ROOM ID &#42;"
             className="inputBox"
             onChange={(e) => setRoomId(e.target.value)}
             onKeyUp={handleInputEnter}
@@ -94,7 +94,7 @@ const Home = () => {
           <InputBox
             value={userName}
             type="text"
-            placeholder="USERNAME"
+            placeholder="USERNAME &#42;"
             className="inputBox"
             onChange={(e) => setUserName(e.target.value)}
             onKeyUp={handleInputEnter}
@@ -105,7 +105,10 @@ const Home = () => {
         </InputGroup>
         <FormSubLabel className="createInfo">
           If you don't have an invite then create&nbsp;
-          <CreateRoomInfo className="createNewRoomBtn" href="#" onClick={createNewRoom}>
+          <CreateRoomInfo
+            className="createNewRoomBtn"
+            onClick={createNewRoom}
+          >
             new room
           </CreateRoomInfo>
         </FormSubLabel>

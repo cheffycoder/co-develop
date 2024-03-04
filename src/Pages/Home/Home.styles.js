@@ -126,13 +126,11 @@ export const JoinButton = styled.button`
 `;
 
 export const CreateRoomInfo = styled.span`
-  // margin: 0 auto; /* Centered the Create Info Text */
-  // margin-top: 20px;
-
   color: #043cc0;
   text-decoration: none;
   border-bottom: 1px solid #043cc0;
   transition: all 0.2s ease-in-out;
+  cursor: pointer;
 
   :hover {
     color: #1c1e29;
